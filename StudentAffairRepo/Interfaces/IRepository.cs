@@ -15,6 +15,6 @@ namespace StudentAffairRepo.Interfaces
 
         public void Update(T entity);
 
-        public bool Delete(T entity);
+        public bool Delete(I index);
     }
 }

@@ -17,11 +17,16 @@ namespace StudentAffairRepo
         {
             _context = context;
         }
-        public bool Delete(CLass entity)
+        public bool Delete(int index)
         {
-            _context.CLasses.Remove(entity);
-            _context.SaveChanges();
-            return true;
+            var entity = GetById(index);
+            if (entity == null) return false;
+            else
+            {
+                _context.CLasses.Remove(entity);
+                _context.SaveChanges();
+                return true;
+            }
         }
 
         public ICollection<CLass> GetAll()

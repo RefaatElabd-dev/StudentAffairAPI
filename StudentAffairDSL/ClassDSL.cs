@@ -12,9 +12,9 @@ namespace StudentAffairDSL
         {
             _classRepo = classRepo;
         }
-        public bool Delete(CLass entity)
+        public bool Delete(int index)
         {
-            return _classRepo.Delete(entity);
+            return _classRepo.Delete(index);
         }
 
         public ICollection<CLass> GetAll()

@@ -61,6 +61,11 @@ namespace StudentAffairAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(configurePolicy =>
+                {
+                    configurePolicy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                }
+            );
 
             app.UseAuthorization();
 

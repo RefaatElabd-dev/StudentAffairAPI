@@ -20,9 +20,9 @@ namespace StudentAffairAPI.Controllers
         }
 
         [HttpDelete]
-        public bool Delete(CLass entity)
+        public bool Delete(int id)
         {
-            return _classDSL.Delete(entity);
+            return _classDSL.Delete(id);
         }
 
         [HttpGet("GetAllClasses")]

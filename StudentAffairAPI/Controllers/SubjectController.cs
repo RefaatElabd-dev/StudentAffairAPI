@@ -18,9 +18,9 @@ namespace StudentAffairAPI.Controllers
             _logger = logger;
         }
         [HttpDelete]
-        public bool Delete(Subject entity)
+        public bool Delete(int id)
         {
-            return _subjectDSL.Delete(entity);
+            return _subjectDSL.Delete(id);
         }
 
         [HttpGet("GetAllSubjects")]

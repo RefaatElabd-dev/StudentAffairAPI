@@ -12,9 +12,9 @@ namespace StudentAffairDSL
         {
             _subjectRepo = subjectRepo;
         }
-        public bool Delete(Subject entity)
+        public bool Delete(int index)
         {
-            return _subjectRepo.Delete(entity);
+            return _subjectRepo.Delete(index);
         }
 
         public ICollection<Subject> GetAll()

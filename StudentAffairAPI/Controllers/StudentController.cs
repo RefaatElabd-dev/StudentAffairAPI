@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using StudentAffairDSL.DSLInterfaces;
 using StudentAffairTypes;
+using StudentAffairTypes.DTOs;
 using System.Collections.Generic;
 
 namespace StudentAffairAPI.Controllers
@@ -19,9 +20,9 @@ namespace StudentAffairAPI.Controllers
         }
 
         [HttpDelete]
-        public bool Delete(Student entity)
+        public bool Delete(int id)
         {
-            return _studentDSL.Delete(entity);
+            return _studentDSL.Delete(id);
         }
 
         [HttpGet("GetAllStudents")]
@@ -29,6 +30,13 @@ namespace StudentAffairAPI.Controllers
         {
             return _studentDSL.GetAll();
         }
+
+        [HttpGet("GetStudentsPage")]
+        public ICollection<Student> GetPage([FromQuery]searchDTO search)
+        {
+            return _studentDSL.GetPage(search);
+        }
+
         [HttpGet("GetStudentByID")]
         public Student GetById(int ID)
         {

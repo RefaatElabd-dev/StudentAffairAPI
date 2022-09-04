@@ -54,5 +54,23 @@ namespace StudentAffairAPI.Controllers
         {
             _studentDSL.Update(entity);
         }
+
+        [HttpGet("GetStudentSubjects")]
+        public ICollection<Subject> GetStudentSubjects(int studentId)
+        {
+            return _studentDSL.GetStudentSubjects(studentId);
+        }
+
+        [HttpPatch("AddStudentSubject")]
+        public void AddStudentSubject(StudentSubject studentSubject)
+        {
+            _studentDSL.AddStudentSubject(studentSubject);
+        }
+
+        [HttpPatch("RemoveStudentSubject")]
+        public void RemoveStudentSubject(StudentSubject studentSubject)
+        {
+            _studentDSL.RemoveStudentSubject(studentSubject);
+        }
     }
 }

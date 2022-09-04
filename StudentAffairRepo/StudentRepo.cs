@@ -1,4 +1,5 @@
-﻿using StudentAffairDAL;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentAffairDAL;
 using StudentAffairRepo.Interfaces;
 using StudentAffairTypes;
 using System;
@@ -38,12 +39,17 @@ namespace StudentAffairRepo
 
         public ICollection<Student> GetAllWithFilter(Expression<Func<Student, bool>> selector, int skip, int take)
         {
-            return _context.Students.Where(selector).Skip(skip).Take(take).OrderBy(S => S.Name).ToList();
+            return _context.Students.Include(s => s.studentSubjects).Where(selector).Skip(skip).Take(take).OrderBy(S => S.Name).ToList();
         }
 
         public Student GetById(int ID)
         {
-            return _context.Students.FirstOrDefault(S => S.ID == ID);
+            return _context.Students.Include(s=>s.studentSubjects).FirstOrDefault(S => S.ID == ID);
+        }
+
+        public ICollection<Subject> GetStudentSubjects(int studentId)
+        {
+            return _context.StudentSubjects.Include(ss=> ss.Subject).Where(ss => ss.StudentID == studentId).Select(s=> s.Subject).ToList();
         }
 
         public void insert(Student entity)
@@ -56,6 +62,18 @@ namespace StudentAffairRepo
         public void Update(Student entity)
         {
             _context.Students.Update(entity);
+            _context.SaveChanges();
+        }
+
+        public void AddStudentSubject(StudentSubject studentSubject)
+        {
+            _context.StudentSubjects.Add(studentSubject);
+            _context.SaveChanges();
+        }
+
+        public void RemoveStudentSubject(StudentSubject studentSubject)
+        {
+            _context.StudentSubjects.Remove(studentSubject);
             _context.SaveChanges();
         }
     }

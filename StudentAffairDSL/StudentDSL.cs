@@ -18,6 +18,12 @@ namespace StudentAffairDSL
         {
             _studentRepo = studentRepo;
         }
+
+        public void AddStudentSubject(StudentSubject studentSubject)
+        {
+            _studentRepo.AddStudentSubject(studentSubject);
+        }
+
         public bool Delete(int index)
         {
             return _studentRepo.Delete(index);
@@ -39,9 +45,19 @@ namespace StudentAffairDSL
             return _studentRepo.GetAllWithFilter(selector, search.Skip, search.Take);
         }
 
+        public ICollection<Subject> GetStudentSubjects(int studentId)
+        {
+            return _studentRepo.GetStudentSubjects(studentId);
+        }
+
         public void insert(Student entity)
         {
             _studentRepo.insert(entity);
+        }
+
+        public void RemoveStudentSubject(StudentSubject studentSubject)
+        {
+            _studentRepo.RemoveStudentSubject(studentSubject);
         }
 
         public void Update(Student entity)

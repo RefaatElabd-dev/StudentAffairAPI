@@ -1,4 +1,5 @@
-﻿using StudentAffairDAL;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentAffairDAL;
 using StudentAffairRepo.Interfaces;
 using StudentAffairTypes;
 using System;
@@ -32,7 +33,7 @@ namespace StudentAffairRepo
 
         public ICollection<Subject> GetAll()
         {
-            return _context.Subjects.ToList();
+            return _context.Subjects.Include(S => S.SubjectClass).ToList();
         }
 
         public Subject GetById(int ID)

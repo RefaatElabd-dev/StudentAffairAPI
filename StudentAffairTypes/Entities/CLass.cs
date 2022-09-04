@@ -11,6 +11,5 @@ namespace StudentAffairTypes
         public int ID { get; set; }
         public string Name { get; set; }
         public int SubjectID { get; set; }
-        public virtual Subject Subject { get; set; }
     }
 }

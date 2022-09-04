@@ -11,6 +11,6 @@ namespace StudentAffairTypes
         public int ID { get; set; }
         public string Name { get; set; }
         public virtual List<StudentSubject> StudentSubjects { get; set; }
-        public virtual CLass Class { get; set; }
+        public virtual CLass SubjectClass { get; set; }
     }
 }

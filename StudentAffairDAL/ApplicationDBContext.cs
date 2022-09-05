@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using StudentAffairHelper;
 using StudentAffairTypes;
 using System;
 using System.Collections.Generic;
@@ -24,20 +25,8 @@ namespace StudentAffairDAL
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<StudentSubject>()
-                .HasKey(ss => new { ss.StudentID, ss.SubjectID });
-
-            modelBuilder.Entity<StudentSubject>()
-                .HasOne(ss => ss.Student)
-                .WithMany(s => s.studentSubjects)
-                .HasForeignKey(s => s.StudentID);
-
-            modelBuilder.Entity<StudentSubject>()
-                .HasOne(ss => ss.Subject)
-                .WithMany(s => s.StudentSubjects)
-                .HasForeignKey(s => s.SubjectID);
+            modelBuilder.mapTables();
+            modelBuilder.seed();
         }
 
         public DbSet<Student> Students { get; set; }

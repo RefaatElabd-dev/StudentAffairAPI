@@ -39,7 +39,7 @@ namespace StudentAffairRepo
 
         public ICollection<Student> GetAllWithFilter(Expression<Func<Student, bool>> selector, int skip, int take)
         {
-            return _context.Students.Include(s => s.studentSubjects).Where(selector).Skip(skip).Take(take).OrderBy(S => S.Name).ToList();
+            return _context.Students.Include(s => s.studentSubjects).Where(selector).OrderBy(S => S.Name).Skip(skip).Take(take).ToList();
         }
 
         public Student GetById(int ID)

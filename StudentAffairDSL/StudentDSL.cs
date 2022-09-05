@@ -42,6 +42,19 @@ namespace StudentAffairDSL
         public ICollection<Student> GetPage(searchDTO search)
         {
             Expression<Func<Student, bool>> selector = S => S.ID > 0;
+            if (!String.IsNullOrEmpty(search.StudentName) && search.SubjectId == 0)
+            {
+                selector = S => S.Name ==  search.StudentName;
+            }
+            else if(String.IsNullOrEmpty(search.StudentName) && search.SubjectId != 0)
+            {
+                selector = S => S.studentSubjects.Any(ss=>ss.SubjectID == search.SubjectId);
+            }
+            else if(!String.IsNullOrEmpty(search.StudentName) && search.SubjectId != 0)
+            {
+                selector = S => S.studentSubjects.Any(ss => ss.SubjectID == search.SubjectId)
+                                && S.Name == search.StudentName;
+            }
             return _studentRepo.GetAllWithFilter(selector, search.Skip, search.Take);
         }
 

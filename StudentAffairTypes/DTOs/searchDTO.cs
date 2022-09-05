@@ -10,5 +10,7 @@ namespace StudentAffairTypes.DTOs
     {
         public int Skip { get; set; }
         public int Take { get; set; }
+        public int SubjectId { get; set; }
+        public string StudentName { get; set; }
     }
 }
